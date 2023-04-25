@@ -1,108 +1,103 @@
-import { BellOutlined, MailOutlined, BgColorsOutlined } from '@ant-design/icons';
-import classNames from 'classnames/bind';
-import styles from './style.module.scss';
 import React from 'react';
 import anh1 from './aaa.png';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { useState } from 'react';
-import { styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-
-import { ThemeProvider } from '@mui/material/styles';
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.common.white,
-    '&:hover': {
-        backgroundColor: theme.palette.common.white,
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
-    },
-}));
+import { Theme } from '../../GlobalStyles/theme';
+import { CssButtonHeader } from '../../GlobalStyles/theme';
+import { TextField } from '@mui/material';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import SmartphoneIcon from '@mui/icons-material/Smartphone';
+import LaptopIcon from '@mui/icons-material/Laptop';
+import TabletIcon from '@mui/icons-material/Tablet';
+import WatchOutlinedIcon from '@mui/icons-material/WatchOutlined';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+function Search() {
+    return (
+        <Grid
+            container
+            item
+            xs={8}
+            justifyContent="left"
+            alignItems="center"
+            style={{ background: '#fff' }}
+            sx={{ borderRadius: '5px' }}
+        >
+            <TextField
+                sx={{ border: 'none', '& fieldset': { border: 'none' }, width: '93%' }}
+                id="outlined-basic"
+                variant="outlined"
+                placeholder="Tìm kiếm"
+                inputProps={{ style: { fontSize: 15 } }}
+            ></TextField>
+            <SearchIcon style={{ height: '7%', width: '7%', paddingRight: '10px' }}></SearchIcon>
+        </Grid>
+    );
+}
 function Header() {
     return (
-        <Grid container rowSpacing={2} columnSpacing={2} justifyContent="center">
-            <Grid container item xs={3} justifyContent="center" alignItems="center">
-                <div>
-                    <img src={anh1} height="42" width="42"></img>
-                </div>
-                <div>Tech Hub</div>
+        <Grid
+            container
+            direction="row"
+            style={{
+                background: Theme.colors.primary,
+                paddingTop: '10px',
+                marginBottom: '20px',
+                paddingBottom: '10px',
+            }}
+            justifyContent="center"
+            alignItems="center"
+        >
+            {/* Logo, thanh tìm kiếm, nút giỏ hàng */}
+            <Grid container justifyContent="center">
+                <Grid container item xs={3} justifyContent="center" alignItems="center">
+                    <div>
+                        <img src={anh1} height={Theme.fontSize.xxl} width={Theme.fontSize.xxl}></img>
+                    </div>
+                    <div style={{ fontWeight: 'bold', fontSize: Theme.fontSize.xl, fontStyle: 'italic' }}>Tech Hub</div>
+                </Grid>
+                <Grid container item xs={5} justifyContent="center" alignItems="center">
+                    <Search></Search>
+                </Grid>
+                <Grid container item xs={2} justifyContent="space-between" alignItems="center">
+                    <Button
+                        style={{
+                            ...CssButtonHeader,
+                            fontWeight: '400',
+                            fontSize: '10px',
+                            background: Theme.colors.button,
+                        }}
+                    >
+                        Lịch sử đơn hàng
+                    </Button>
+                    <Button style={{ ...CssButtonHeader, background: Theme.colors.button, fontWeight: '500' }}>
+                        Giỏ hàng
+                        <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
+                    </Button>
+                </Grid>
             </Grid>
-            <Grid item xs={5}>
-                <Search>
-                    <StyledInputBase placeholder="Tìm kiếm" inputProps={{ 'aria-label': 'search' }} />
-                    <IconButton aria-label="search">
-                        <SearchIcon />
-                    </IconButton>
-                </Search>
-            </Grid>
-            <Grid item xs={2}>
-                <Button color="secondary">fsd</Button>
+            {/* Menu các loại sản phâmr */}
+            <Grid container justifyContent="space-between" xs={5}>
+                <Grid>
+                    <Button style={CssButtonHeader}>
+                        <SmartphoneIcon sx={{ paddingRight: '5px' }}></SmartphoneIcon> Điện thoại
+                    </Button>
+                </Grid>
+                <Button style={CssButtonHeader}>
+                    <LaptopIcon sx={{ paddingRight: '5px' }}></LaptopIcon> Laptop
+                </Button>
+                <Button style={CssButtonHeader}>
+                    <TabletIcon sx={{ paddingRight: '5px' }}></TabletIcon> Tablet
+                </Button>
+                <Button style={CssButtonHeader}>
+                    <WatchOutlinedIcon sx={{ paddingRight: '5px' }}></WatchOutlinedIcon> Đồng hồ
+                </Button>
+                <Button style={CssButtonHeader}>
+                    <HeadphonesIcon sx={{ paddingRight: '5px' }}></HeadphonesIcon> Tai nghe
+                </Button>
             </Grid>
         </Grid>
-        // <div className={cx('header-container')}>
-        //     <div className={cx('header-row-1')}>
-        //         <div className="logo">
-        //             <div>
-        //                 <img src={anh1} height="42" width="42" className={cx('icon-container')}></img>
-        //             </div>
-        //             <div className={cx('store-name')}>Tech Hub</div>
-        //         </div>
-        //         <div className={cx('search-bar')}>
-        //             <input></input>
-        //             <BsSearch />
-        //         </div>
-        //         <div className={cx('order')}>
-        //             <div className={cx('order-history')}>
-        //                 <button>Lịch sử đơn hàng</button>
-        //             </div>
-        //             <div className={cx('cart')}>
-        //                 <Button className="primary col-6" variant="contained">
-        //                     <BsCart />
-        //                     Giỏ hàng
-        //                 </Button>
-        //             </div>
-        //         </div>
-        //     </div>
-        //     <div className="header-row-2">{/* Mã HTML để hiển thị danh sách sản phẩm */}</div>
-        // </div>
     );
 }
 
