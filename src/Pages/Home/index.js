@@ -1,5 +1,4 @@
 import Grid from '@mui/material/Grid';
-import Carousel from 'react-material-ui-carousel';
 import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -9,8 +8,7 @@ import { Card, CardMedia, CardContent, Typography, Rating, Button } from '@mui/m
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import style from './style.scss';
-import anh1 from './img/anhbia1.png';
-import anh2 from './img/anhbia2.jpg';
+
 import anhtrang from './img/anhtrang.jpg';
 import {
     Theme,
@@ -27,6 +25,7 @@ const ProductCard = ({ name, price, image, rating, id }) => {
     return (
         <Grid>
             <Card
+                key={id}
                 onMouseOver={() => {
                     setactiveProduct(id);
                 }}
@@ -146,7 +145,7 @@ function ProductList() {
         <Grid style={{ position: 'relative' }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Slider ref={sliderRef} {...settings}>
                 {products.map((product) => {
-                    return <ProductCard {...product}></ProductCard>;
+                    return <ProductCard key={product.id} {...product}></ProductCard>;
                 })}
             </Slider>
 
@@ -196,17 +195,9 @@ function ProductList() {
 function Home() {
     return (
         <>
-            <Carousel autoPlay="true" indicators={false}>
-                <Grid justifyContent="center" container>
-                    <img src={anh1}></img>
-                </Grid>
-                <Grid justifyContent="center" container>
-                    <img src={anh2}></img>
-                </Grid>
-            </Carousel>
-
             <Grid container justifyContent="center">
                 <Grid
+                    item
                     xs={10}
                     style={{
                         marginTop: '20px',
