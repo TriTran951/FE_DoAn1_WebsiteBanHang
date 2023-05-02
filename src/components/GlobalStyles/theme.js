@@ -9,6 +9,8 @@ export const Theme = createTheme({
         black: '#000000',
         white: '#ffffff',
         nameHover: '#7CCCA5',
+        border: '#E5E5DB',
+        filter: '#387CA5',
     },
     fontSize: {
         s: '14px',
@@ -27,7 +29,7 @@ export const CssButtonHeader = {
     lineHeight: '16px',
     color: '#333',
     fontWeight: '410',
-    height: '50px',
+    height: '45px',
 };
 
 export const CssButtonFullProduct = {

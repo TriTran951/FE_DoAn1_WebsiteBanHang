@@ -88,7 +88,13 @@ function Header() {
                 alignItems="center"
             >
                 {/* Logo, thanh tìm kiếm, nút giỏ hàng */}
-                <Grid container justifyContent="center">
+                <Grid
+                    container
+                    justifyContent="center"
+                    onClick={() => {
+                        setIdproduct(null);
+                    }}
+                >
                     <Grid container item lg={3} sm={4}>
                         <Link to="/" style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}>
                             <Grid justifyContent="center" alignItems="center" container>
@@ -148,7 +154,7 @@ function Header() {
                     })}
                 </Grid>
             </Grid>
-            <Grid style={{ marginBottom: '20px' }}>
+            <Grid style={{ marginBottom: '50px' }}>
                 <Carousel autoPlay="true" indicators={false}>
                     <Grid justifyContent="center" container>
                         <img src={anh1}></img>

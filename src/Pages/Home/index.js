@@ -1,10 +1,9 @@
-import Grid from '@mui/material/Grid';
 import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDongSign } from '@fortawesome/free-solid-svg-icons';
-import { Card, CardMedia, CardContent, Typography, Rating, Button } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Rating, Button, Grid } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import style from './style.scss';
@@ -40,8 +39,9 @@ const ProductCard = ({ name, price, image, rating, id }) => {
                     image={image}
                     alt={name}
                     style={{
-                        transform: activeProduct === id ? 'translateY(-10px)' : 'none',
+                        transform: activeProduct === id ? 'translateY(-15px)' : 'none',
                         transitionDuration: '0.5s',
+                        marginTop: '20px',
                     }}
                 />
                 <CardContent>
@@ -69,7 +69,7 @@ const products = [
         id: 1,
         name: 'Product 1',
         price: '9.99',
-        image: anhtrang,
+        image: 'https://cdn.tgdd.vn/Products/Images/7264/204692/festina-f20347-5-nam-600x600.jpg',
         rating: 4,
     },
     {
@@ -157,7 +157,7 @@ function ProductList() {
                     position: 'absolute',
                     left: '0',
                     top: '50%',
-                    transform: 'translate(-20%,-50%) ',
+                    transform: 'translate(-25%,-50%) ',
                     border: '0px',
                     boxShadow: '4px 0px  rgba(0, 0, 0, 0.3)',
                     opacity: isHover ? '1' : '0.5',
@@ -177,7 +177,7 @@ function ProductList() {
                     position: 'absolute',
                     right: '0',
                     top: '50%',
-                    transform: 'translate(20%,-50%) ',
+                    transform: 'translate(25%,-50%) ',
                     border: '0px',
                     boxShadow: '-4px 0px   rgba(0, 0, 0, 0.3)',
                     opacity: isHover ? '1' : '0.35',
