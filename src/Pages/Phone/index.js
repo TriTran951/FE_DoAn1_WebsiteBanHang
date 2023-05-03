@@ -356,7 +356,7 @@ const PopoverExample = ({ value, name, id }) => {
         let updatedSelectedNames = [...bntChooseO];
         if (updatedSelectedValues.includes(value)) {
             updatedSelectedValues = updatedSelectedValues.filter((item) => item !== value);
-            if (updatedSelectedValues.length == 0) {
+            if (updatedSelectedValues.length === 0) {
                 updatedSelectedNames = updatedSelectedNames.filter((item) => item !== id);
             }
         } else {

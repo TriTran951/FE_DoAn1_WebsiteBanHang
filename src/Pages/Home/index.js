@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,7 @@ import { faDongSign } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardMedia, CardContent, Typography, Rating, Button, Grid } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import axios from 'axios';
 import style from './style.scss';
 
 import anhtrang from './img/anhtrang.jpg';
@@ -19,27 +20,27 @@ import {
 library.add(faDongSign);
 
 // Từng ô sản phẩm
-const ProductCard = ({ name, price, image, rating, id }) => {
+const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, rating, _id }) => {
     const [activeProduct, setactiveProduct] = useState(null);
     return (
         <Grid>
             <Card
-                key={id}
+                key={_id}
                 onMouseOver={() => {
-                    setactiveProduct(id);
+                    setactiveProduct(_id);
                 }}
                 onMouseOut={() => {
                     setactiveProduct(null);
                 }}
-                style={{ marginLeft: '0.5vw', marginRight: '0.5vw', position: 'relative' }}
+                style={{ marginLeft: '0.5vw', marginRight: '0.5vw', position: 'relative', height: '400px' }}
             >
                 <CardMedia
                     component="img"
                     height="220"
-                    image={image}
-                    alt={name}
+                    image={HinhAnh}
+                    alt={TenSanPham}
                     style={{
-                        transform: activeProduct === id ? 'translateY(-15px)' : 'none',
+                        transform: activeProduct === _id ? 'translateY(-15px)' : 'none',
                         transitionDuration: '0.5s',
                         marginTop: '20px',
                     }}
@@ -48,13 +49,13 @@ const ProductCard = ({ name, price, image, rating, id }) => {
                     <Typography
                         style={{
                             ...CssNameProduct,
-                            color: activeProduct === id ? Theme.colors.nameHover : Theme.colors.black,
+                            color: activeProduct === _id ? Theme.colors.nameHover : Theme.colors.black,
                         }}
                     >
-                        {name}
+                        {TenSanPham}
                     </Typography>
                     <Typography style={{ ...CssPrice }}>
-                        {price}
+                        {GiaBan}
                         <FontAwesomeIcon icon={faDongSign} />
                     </Typography>
                     <Rating value={rating} readOnly />
@@ -125,14 +126,32 @@ const products = [
 
 // List sản phẩm
 function ProductList() {
-    const sliderRef = useRef(null);
+    let sliderRef = useRef(null);
     const [isHover, setIsHover] = useState(false);
+    const [homeProducts, sethomeProducts] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                await axios({
+                    method: 'GET',
+                    url: 'http://localhost:3150/api/client/homeproduct',
+                }).then((res) => {
+                    console.log(res.data);
+                    sethomeProducts(res.data);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+    }, []);
+    let dien_thoai = homeProducts[0];
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToShow: 5,
+        slidesToScroll: 5,
     };
     const handleMouseOver = () => {
         setIsHover(true);
@@ -144,8 +163,8 @@ function ProductList() {
     return (
         <Grid style={{ position: 'relative' }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <Slider ref={sliderRef} {...settings}>
-                {products.map((product) => {
-                    return <ProductCard key={product.id} {...product}></ProductCard>;
+                {dien_thoai.map((dien_thoai) => {
+                    return <ProductCard key={dien_thoai._id} {...dien_thoai}></ProductCard>;
                 })}
             </Slider>
 

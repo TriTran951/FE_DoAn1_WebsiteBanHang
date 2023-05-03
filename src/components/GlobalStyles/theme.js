@@ -19,6 +19,7 @@ export const Theme = createTheme({
         xl: '50px',
         xxl: '80px',
         price: '25px',
+        name: '15px',
     },
     fontFamily: 'Roboto',
 });
@@ -47,7 +48,7 @@ export const CssHeaderProduct = {
 };
 
 export const CssNameProduct = {
-    fontSize: Theme.fontSize.m,
+    fontSize: Theme.fontSize.name,
     color: Theme.colors.black,
 };
 export const CssPrice = {
