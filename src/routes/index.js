@@ -1,34 +1,36 @@
 import Home from '../Pages/Home/index.js';
-import Phone from '../Pages/Phone/index.js';
-import Laptop from '../Pages/Laptop/index.js';
-import Tablet from '../Pages/Tablet/index.js';
-import Smartwatch from '../Pages/Smartwatch/index.js';
-import Headphone from '../Pages/Headphone/index.js';
+import Product from '../Pages/Product/index.js';
 
 const publicRoutes = [
     {
         path: '/',
         component: Home,
+        stt: -1,
     },
     {
         path: '/dien-thoai',
-        component: Phone,
+        component: Product,
+        stt: 0,
     },
     {
         path: '/lap-top',
-        component: Laptop,
+        component: Product,
+        stt: 1,
     },
     {
         path: '/tab-let',
-        component: Tablet,
+        component: Product,
+        stt: 2,
     },
     {
         path: '/dong-ho',
-        component: Smartwatch,
+        component: Product,
+        stt: 3,
     },
     {
         path: '/tai-nghe',
-        component: Headphone,
+        component: Product,
+        stt: 4,
     },
 ];
 

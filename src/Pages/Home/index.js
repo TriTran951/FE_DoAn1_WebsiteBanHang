@@ -7,9 +7,10 @@ import { Card, CardMedia, CardContent, Typography, Rating, Button, Grid } from '
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import style from './style.scss';
 
-import anhtrang from './img/anhtrang.jpg';
 import {
     Theme,
     CssButtonFullProduct,
@@ -18,9 +19,8 @@ import {
     CssPrice,
 } from '~/components/GlobalStyles/theme.js';
 library.add(faDongSign);
-
 // Từng ô sản phẩm
-const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, rating, _id }) => {
+const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, _id }) => {
     const [activeProduct, setactiveProduct] = useState(null);
     return (
         <Grid>
@@ -32,17 +32,25 @@ const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, rating, _id }) => {
                 onMouseOut={() => {
                     setactiveProduct(null);
                 }}
-                style={{ marginLeft: '0.5vw', marginRight: '0.5vw', position: 'relative', height: '400px' }}
+                style={{
+                    marginLeft: '0.25vw',
+                    marginRight: '0.25vw',
+                    position: 'relative',
+                    height: '430px',
+                    borderRadius: '8px',
+                }}
             >
                 <CardMedia
                     component="img"
-                    height="220"
+                    height="240px"
                     image={HinhAnh}
                     alt={TenSanPham}
                     style={{
                         transform: activeProduct === _id ? 'translateY(-15px)' : 'none',
                         transitionDuration: '0.5s',
                         marginTop: '20px',
+                        padding: '16px',
+                        objectFit: 'contain',
                     }}
                 />
                 <CardContent>
@@ -55,97 +63,21 @@ const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, rating, _id }) => {
                         {TenSanPham}
                     </Typography>
                     <Typography style={{ ...CssPrice }}>
-                        {GiaBan}
-                        <FontAwesomeIcon icon={faDongSign} />
+                        {GiaBan.toLocaleString('vi-VN')}
+                        <FontAwesomeIcon style={{ marginLeft: '2px' }} icon={faDongSign} />
                     </Typography>
-                    <Rating value={rating} readOnly />
+                    <Rating value="4" readOnly />
                 </CardContent>
             </Card>
         </Grid>
     );
 };
-// Thông tin sản phẩm
-const products = [
-    {
-        id: 1,
-        name: 'Product 1',
-        price: '9.99',
-        image: 'https://cdn.tgdd.vn/Products/Images/7264/204692/festina-f20347-5-nam-600x600.jpg',
-        rating: 4,
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        price: '19.99',
-        image: anhtrang,
-        rating: 3,
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: '29.99',
-        image: anhtrang,
-        rating: 5,
-    },
-    {
-        id: 4,
-        name: 'Product 4',
-        price: '9.99',
-        image: anhtrang,
-        rating: 4,
-    },
-    {
-        id: 5,
-        name: 'Product 5',
-        price: '19.99',
-        image: anhtrang,
-        rating: 3,
-    },
-    {
-        id: 6,
-        name: 'Product 6',
-        price: '29.99',
-        image: anhtrang,
-        rating: 5,
-    },
-    {
-        id: 7,
-        name: 'Product 7',
-        price: '19.99',
-        image: anhtrang,
-        rating: 3,
-    },
-    {
-        id: 8,
-        name: 'Product 8',
-        price: '29.99',
-        image: anhtrang,
-        rating: 5,
-    },
-];
 
 // List sản phẩm
-function ProductList() {
+function ProductList({ dien_thoai }) {
     let sliderRef = useRef(null);
     const [isHover, setIsHover] = useState(false);
-    const [homeProducts, sethomeProducts] = useState([]);
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                await axios({
-                    method: 'GET',
-                    url: 'http://localhost:3150/api/client/homeproduct',
-                }).then((res) => {
-                    console.log(res.data);
-                    sethomeProducts(res.data);
-                });
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchData();
-    }, []);
-    let dien_thoai = homeProducts[0];
+
     const settings = {
         dots: false,
         infinite: true,
@@ -162,9 +94,9 @@ function ProductList() {
     };
     return (
         <Grid style={{ position: 'relative' }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-            <Slider ref={sliderRef} {...settings}>
-                {dien_thoai.map((dien_thoai) => {
-                    return <ProductCard key={dien_thoai._id} {...dien_thoai}></ProductCard>;
+            <Slider ref={sliderRef} {...settings} style={{ padding: '0px 8px' }}>
+                {dien_thoai?.map((item) => {
+                    return <ProductCard key={item._id} {...item}></ProductCard>;
                 })}
             </Slider>
 
@@ -212,9 +144,26 @@ function ProductList() {
     );
 }
 function Home() {
+    const [homeProducts, sethomeProducts] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                await axios({
+                    method: 'GET',
+                    url: 'http://localhost:3150/api/client/homeproduct',
+                }).then((res) => {
+                    sethomeProducts(res.data);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+    }, []);
     return (
         <>
             <Grid container justifyContent="center">
+                {/* điện thoại */}
                 <Grid
                     item
                     xs={10}
@@ -222,17 +171,136 @@ function Home() {
                         marginTop: '20px',
                         background: Theme.colors.background,
                         padding: '1vw 0.5vw ',
+                        marginBottom: '20px',
+                        borderRadius: '17px',
                     }}
                 >
                     <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
                         <Typography style={{ ...CssHeaderProduct }}>ĐIỆN THOẠI</Typography>
                     </Grid>
-                    <ProductList></ProductList>
+                    <ProductList dien_thoai={homeProducts[0]}></ProductList>
                     <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
-                        <Button style={{ ...CssButtonFullProduct }}>
-                            Xem tất cả
-                            <NavigateNextIcon style={{ fontSize: '17px' }}></NavigateNextIcon>
-                        </Button>
+                        <Link
+                            to="/dien-thoai"
+                            style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <Button style={{ ...CssButtonFullProduct }}>
+                                Xem tất cả
+                                <NavigateNextIcon style={{ fontSize: '17px' }}></NavigateNextIcon>
+                            </Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+                {/* laptop */}
+                <Grid
+                    item
+                    xs={10}
+                    style={{
+                        marginTop: '20px',
+                        background: Theme.colors.background,
+                        padding: '1vw 0.5vw ',
+                        marginBottom: '20px',
+                        borderRadius: '17px',
+                    }}
+                >
+                    <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
+                        <Typography style={{ ...CssHeaderProduct }}>LAPTOP</Typography>
+                    </Grid>
+                    <ProductList dien_thoai={homeProducts[1]}></ProductList>
+                    <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
+                        <Link
+                            to="/lap-top"
+                            style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <Button style={{ ...CssButtonFullProduct }}>
+                                Xem tất cả
+                                <NavigateNextIcon style={{ fontSize: '17px' }}></NavigateNextIcon>
+                            </Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+                {/* tablet */}
+                <Grid
+                    item
+                    xs={10}
+                    style={{
+                        marginTop: '20px',
+                        background: Theme.colors.background,
+                        padding: '1vw 0.5vw ',
+                        marginBottom: '20px',
+                        borderRadius: '17px',
+                    }}
+                >
+                    <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
+                        <Typography style={{ ...CssHeaderProduct }}>TABLET</Typography>
+                    </Grid>
+                    <ProductList dien_thoai={homeProducts[2]}></ProductList>
+                    <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
+                        <Link
+                            to="/tab-let"
+                            style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <Button style={{ ...CssButtonFullProduct }}>
+                                Xem tất cả
+                                <NavigateNextIcon style={{ fontSize: '17px' }}></NavigateNextIcon>
+                            </Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+                {/* dong ho */}
+                <Grid
+                    item
+                    xs={10}
+                    style={{
+                        marginTop: '20px',
+                        background: Theme.colors.background,
+                        padding: '1vw 0.5vw ',
+                        marginBottom: '20px',
+                        borderRadius: '17px',
+                    }}
+                >
+                    <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
+                        <Typography style={{ ...CssHeaderProduct }}>ĐỒNG HỒ</Typography>
+                    </Grid>
+                    <ProductList dien_thoai={homeProducts[3]}></ProductList>
+                    <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
+                        <Link
+                            to="/dong-ho"
+                            style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <Button style={{ ...CssButtonFullProduct }}>
+                                Xem tất cả
+                                <NavigateNextIcon style={{ fontSize: '17px' }}></NavigateNextIcon>
+                            </Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+                {/* tai nghe */}
+                <Grid
+                    item
+                    xs={10}
+                    style={{
+                        marginTop: '20px',
+                        background: Theme.colors.background,
+                        padding: '1vw 0.5vw ',
+                        marginBottom: '20px',
+                        borderRadius: '17px',
+                    }}
+                >
+                    <Grid container justifyContent="center" style={{ marginBottom: '10px' }}>
+                        <Typography style={{ ...CssHeaderProduct }}>TAI NGHE</Typography>
+                    </Grid>
+                    <ProductList dien_thoai={homeProducts[4]}></ProductList>
+                    <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
+                        <Link
+                            to="/tai-nghe"
+                            style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                        >
+                            <Button style={{ ...CssButtonFullProduct }}>
+                                Xem tất cả
+                                <NavigateNextIcon style={{ fontSize: '17px' }}></NavigateNextIcon>
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
             </Grid>

@@ -77,6 +77,9 @@ function Header() {
         <>
             <Grid
                 container
+                // position="fixed"
+                // top="0px"
+                // zIndex="1000"
                 direction="row"
                 style={{
                     background: Theme.colors.primary,

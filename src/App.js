@@ -15,7 +15,7 @@ function App() {
                                 path={route.path}
                                 element={
                                     <Layoutt>
-                                        <Page />
+                                        <Page stt={route.stt} />
                                     </Layoutt>
                                 }
                             ></Route>
