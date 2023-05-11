@@ -10,6 +10,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import style from './style.scss';
+import Carousel from 'react-material-ui-carousel';
+
+import anh1 from './img/anhbia1.png';
+import anh2 from './img/anhbia2.jpg';
 
 import {
     Theme,
@@ -23,53 +27,60 @@ library.add(faDongSign);
 const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, _id }) => {
     const [activeProduct, setactiveProduct] = useState(null);
     return (
-        <Grid>
-            <Card
-                key={_id}
-                onMouseOver={() => {
-                    setactiveProduct(_id);
-                }}
-                onMouseOut={() => {
-                    setactiveProduct(null);
-                }}
-                style={{
-                    marginLeft: '0.25vw',
-                    marginRight: '0.25vw',
-                    position: 'relative',
-                    height: '430px',
-                    borderRadius: '8px',
-                }}
+        <>
+            <Link
+                to={{ pathname: `/san-pham/${TenSanPham}`, search: `?id=${_id}` }}
+                style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
             >
-                <CardMedia
-                    component="img"
-                    height="240px"
-                    image={HinhAnh}
-                    alt={TenSanPham}
-                    style={{
-                        transform: activeProduct === _id ? 'translateY(-15px)' : 'none',
-                        transitionDuration: '0.5s',
-                        marginTop: '20px',
-                        padding: '16px',
-                        objectFit: 'contain',
-                    }}
-                />
-                <CardContent>
-                    <Typography
+                <Grid>
+                    <Card
+                        key={_id}
+                        onMouseOver={() => {
+                            setactiveProduct(_id);
+                        }}
+                        onMouseOut={() => {
+                            setactiveProduct(null);
+                        }}
                         style={{
-                            ...CssNameProduct,
-                            color: activeProduct === _id ? Theme.colors.nameHover : Theme.colors.black,
+                            marginLeft: '0.25vw',
+                            marginRight: '0.25vw',
+                            position: 'relative',
+                            height: '430px',
+                            borderRadius: '8px',
                         }}
                     >
-                        {TenSanPham}
-                    </Typography>
-                    <Typography style={{ ...CssPrice }}>
-                        {GiaBan.toLocaleString('vi-VN')}
-                        <FontAwesomeIcon style={{ marginLeft: '2px' }} icon={faDongSign} />
-                    </Typography>
-                    <Rating value="4" readOnly />
-                </CardContent>
-            </Card>
-        </Grid>
+                        <CardMedia
+                            component="img"
+                            height="240px"
+                            image={HinhAnh}
+                            alt={TenSanPham}
+                            style={{
+                                transform: activeProduct === _id ? 'translateY(-15px)' : 'none',
+                                transitionDuration: '0.5s',
+                                marginTop: '20px',
+                                padding: '16px',
+                                objectFit: 'contain',
+                            }}
+                        />
+                        <CardContent>
+                            <Typography
+                                style={{
+                                    ...CssNameProduct,
+                                    color: activeProduct === _id ? Theme.colors.nameHover : Theme.colors.black,
+                                }}
+                            >
+                                {TenSanPham}
+                            </Typography>
+                            <Typography style={{ ...CssPrice }}>
+                                {GiaBan.toLocaleString('vi-VN')}
+                                <FontAwesomeIcon style={{ marginLeft: '2px' }} icon={faDongSign} />
+                            </Typography>
+                            <Rating value="4" readOnly />
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Link>
+        </>
     );
 };
 
@@ -162,6 +173,16 @@ function Home() {
     }, []);
     return (
         <>
+            <Grid style={{ marginBottom: '50px' }}>
+                <Carousel autoPlay="true" indicators={false}>
+                    <Grid justifyContent="center" container>
+                        <img src={anh1}></img>
+                    </Grid>
+                    <Grid justifyContent="center" container>
+                        <img src={anh2}></img>
+                    </Grid>
+                </Carousel>
+            </Grid>
             <Grid container justifyContent="center">
                 {/* điện thoại */}
                 <Grid

@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import logo from './aaa.png';
-import Carousel from 'react-material-ui-carousel';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -14,8 +13,7 @@ import LaptopIcon from '@mui/icons-material/Laptop';
 import TabletIcon from '@mui/icons-material/Tablet';
 import WatchOutlinedIcon from '@mui/icons-material/WatchOutlined';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-import anh1 from './img/anhbia1.png';
-import anh2 from './img/anhbia2.jpg';
+
 import { Link } from 'react-router-dom';
 function Search() {
     return (
@@ -156,16 +154,6 @@ function Header() {
                         );
                     })}
                 </Grid>
-            </Grid>
-            <Grid style={{ marginBottom: '50px' }}>
-                <Carousel autoPlay="true" indicators={false}>
-                    <Grid justifyContent="center" container>
-                        <img src={anh1}></img>
-                    </Grid>
-                    <Grid justifyContent="center" container>
-                        <img src={anh2}></img>
-                    </Grid>
-                </Carousel>
             </Grid>
         </>
     );

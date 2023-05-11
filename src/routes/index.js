@@ -1,4 +1,5 @@
 import Home from '../Pages/Home/index.js';
+import ListProduct from '../Pages/ListProduct/index.js';
 import Product from '../Pages/Product/index.js';
 
 const publicRoutes = [
@@ -9,28 +10,32 @@ const publicRoutes = [
     },
     {
         path: '/dien-thoai',
-        component: Product,
+        component: ListProduct,
         stt: 0,
     },
     {
         path: '/lap-top',
-        component: Product,
+        component: ListProduct,
         stt: 1,
     },
     {
         path: '/tab-let',
-        component: Product,
+        component: ListProduct,
         stt: 2,
     },
     {
         path: '/dong-ho',
-        component: Product,
+        component: ListProduct,
         stt: 3,
     },
     {
         path: '/tai-nghe',
-        component: Product,
+        component: ListProduct,
         stt: 4,
+    },
+    {
+        path: '/san-pham/:id',
+        component: Product,
     },
 ];
 
