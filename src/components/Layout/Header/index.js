@@ -1,12 +1,11 @@
 import { React, useState } from 'react';
-import logo from './aaa.png';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import SearchIcon from '@mui/icons-material/Search';
 import { Theme } from '../../GlobalStyles/theme';
 import { CssButtonHeader } from '../../GlobalStyles/theme';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import LaptopIcon from '@mui/icons-material/Laptop';
@@ -19,11 +18,9 @@ function Search() {
     return (
         <Grid
             container
-            item
-            xs={8}
             justifyContent="left"
             alignItems="center"
-            style={{ background: '#fff' }}
+            style={{ background: '#fff', width: '100%' }}
             sx={{ borderRadius: '5px' }}
         >
             <TextField
@@ -78,11 +75,12 @@ function Header() {
                 // position="fixed"
                 // top="0px"
                 // zIndex="1000"
+                boxShadow={'0 4px 8px 0 rgba(60,64,67,.1), 0 4px 24px 8px rgba(60,64,67,.15)'}
                 direction="row"
                 style={{
                     background: Theme.colors.primary,
                     paddingTop: '10px',
-                    marginBottom: '20px',
+                    marginBottom: '32px',
                     paddingBottom: '10px',
                 }}
                 justifyContent="center"
@@ -96,36 +94,51 @@ function Header() {
                         setIdproduct(null);
                     }}
                 >
-                    <Grid container item lg={3} sm={4}>
-                        <Link to="/" style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}>
-                            <Grid justifyContent="center" alignItems="center" container>
-                                <div>
-                                    <img src={logo} height={Theme.fontSize.xxl} width={Theme.fontSize.xxl}></img>
-                                </div>
-                                <div style={{ fontWeight: 'bold', fontSize: Theme.fontSize.xl, fontStyle: 'italic' }}>
-                                    Tech Hub
-                                </div>
+                    <Grid container xs={10}>
+                        <Grid container item xs={4} justifyContent="center" alignItems="center">
+                            <Link to="/" style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}>
+                                <Grid container>
+                                    {/* <div>
+                                        <img src={logo} height={Theme.fontSize.xxl} width={Theme.fontSize.xxl}></img>
+                                    </div> */}
+                                    <Typography
+                                        style={{
+                                            fontWeight: 'bold',
+                                            fontSize: Theme.fontSize.xl,
+                                            fontStyle: 'italic',
+                                            color: Theme.colors.black,
+                                        }}
+                                    >
+                                        Tech Hub
+                                    </Typography>
+                                </Grid>
+                            </Link>
+                        </Grid>
+                        <Grid container item xs={4} justifyContent="center" alignItems="center">
+                            <Search></Search>
+                        </Grid>
+                        <Grid container item xs={4} justifyContent="center" alignItems="center" spacing={3}>
+                            <Grid item>
+                                <Button
+                                    style={{
+                                        ...CssButtonHeader,
+                                        fontWeight: '400',
+                                        fontSize: '10px',
+                                        background: Theme.colors.button,
+                                    }}
+                                >
+                                    Lịch sử đơn hàng
+                                </Button>
                             </Grid>
-                        </Link>
-                    </Grid>
-                    <Grid container item lg={5} sm={5} justifyContent="center" alignItems="center">
-                        <Search></Search>
-                    </Grid>
-                    <Grid container item lg={2} sm={2.25} xs={4} justifyContent="space-around" alignItems="center">
-                        <Button
-                            style={{
-                                ...CssButtonHeader,
-                                fontWeight: '400',
-                                fontSize: '10px',
-                                background: Theme.colors.button,
-                            }}
-                        >
-                            Lịch sử đơn hàng
-                        </Button>
-                        <Button style={{ ...CssButtonHeader, background: Theme.colors.button, fontWeight: '500' }}>
-                            Giỏ hàng
-                            <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
-                        </Button>
+                            <Grid item>
+                                <Button
+                                    style={{ ...CssButtonHeader, background: Theme.colors.button, fontWeight: '500' }}
+                                >
+                                    Giỏ hàng
+                                    <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
                 {/* Menu các loại sản phâmr */}

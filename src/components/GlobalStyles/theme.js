@@ -11,10 +11,13 @@ export const Theme = createTheme({
         nameHover: '#7CCCA5',
         border: '#E5E5DB',
         filter: '#387CA5',
+        borderbasic: '#d1d5db',
     },
     fontSize: {
-        s: '14px',
+        min: '8px',
+        s: '13px',
         m: '18px',
+        ms: '25px',
         l: '30px',
         xl: '50px',
         xxl: '80px',
@@ -31,6 +34,7 @@ export const CssButtonHeader = {
     color: '#333',
     fontWeight: '410',
     height: '45px',
+    borderRadius: '9px',
 };
 
 export const CssButtonFullProduct = {

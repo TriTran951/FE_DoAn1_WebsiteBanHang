@@ -483,7 +483,7 @@ const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, rating, _id }) => {
     return (
         <>
             <Link
-                to={{ pathname: `/san-pham/${TenSanPham}`, search: `?id=${_id}` }}
+                to={{ pathname: `/san-pham/${TenSanPham.replace('/', '')}`, search: `?id=${_id}` }}
                 style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
             >
                 <Grid>
