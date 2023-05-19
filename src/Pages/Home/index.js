@@ -31,7 +31,7 @@ function Home() {
             try {
                 await axios({
                     method: 'GET',
-                    url: 'http://localhost:3150/api/client/homeproduct',
+                    url: process.env.REACT_APP_hostBE + '/api/client/homeproduct',
                 }).then((res) => {
                     sethomeProducts(res.data);
                 });

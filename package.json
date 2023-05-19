@@ -48,6 +48,11 @@
         "uuid": "^8.3.2",
         "web-vitals": "^2.1.4"
     },
+    "browser": {
+        "fs": false,
+        "os": false,
+        "path": false
+      },
     "scripts": {
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
