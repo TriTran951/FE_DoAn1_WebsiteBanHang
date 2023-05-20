@@ -536,11 +536,11 @@ function ProductPage({ stt }) {
     const [page, setPage] = useState(1);
     const [products, setproducts] = useState([]);
     let URL;
-    if (stt === 0) URL = 'http://localhost:3150/api/client/dienthoai';
-    if (stt === 1) URL = 'http://localhost:3150/api/client/laptop';
-    if (stt === 2) URL = 'http://localhost:3150/api/client/tablet';
-    if (stt === 3) URL = 'http://localhost:3150/api/client/dongho';
-    if (stt === 4) URL = 'http://localhost:3150/api/client/tainghe';
+    if (stt === 0) URL = process.env.REACT_APP_hostBE + '/api/client/dienthoai';
+    if (stt === 1) URL = process.env.REACT_APP_hostBE + '/api/client/laptop';
+    if (stt === 2) URL = process.env.REACT_APP_hostBE + '/api/client/tablet';
+    if (stt === 3) URL = process.env.REACT_APP_hostBE + '/api/client/dongho';
+    if (stt === 4) URL = process.env.REACT_APP_hostBE + '/api/client/tainghe';
     // Tổng số sản phẩm và số sản phẩm trên một trang
     useEffect(() => {
         async function fetchData() {

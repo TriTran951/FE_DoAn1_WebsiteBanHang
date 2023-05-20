@@ -23,7 +23,7 @@ function Product() {
             try {
                 await axios({
                     method: 'POST',
-                    url: 'http://localhost:3150/api/client/getproduct',
+                    url: process.env.REACT_APP_hostBE + '/api/client/getproduct',
                     data: { id: id },
                 }).then((res) => {
                     window.scroll(0, 0);
