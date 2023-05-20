@@ -6,6 +6,7 @@ import { faDongSign } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardMedia, CardContent, Typography, Rating, Pagination, Grid, Button, Popover } from '@mui/material';
 import { Theme, CssNameProduct, CssPrice } from '~/components/GlobalStyles/theme.js';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 library.add(faDongSign);

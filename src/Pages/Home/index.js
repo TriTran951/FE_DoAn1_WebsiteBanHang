@@ -7,6 +7,7 @@ import { Card, CardMedia, CardContent, Typography, Rating, Button, Grid, Skeleto
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import style from './style.scss';
