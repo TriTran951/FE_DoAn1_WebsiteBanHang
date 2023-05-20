@@ -174,13 +174,24 @@ function Home() {
     }
     return (
         <>
+            <Helmet>
+                <title>TechHub - Mua sắm thiết bị điện tử chất lượng </title>
+                <meta
+                    name="description"
+                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị gia dụng thông minh."
+                />
+                <meta
+                    name="keywords"
+                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị gia dụng thông minh."
+                />
+            </Helmet>
             <Grid style={{ marginBottom: '50px' }}>
                 <Carousel autoPlay="true" indicators={false}>
                     <Grid justifyContent="center" container>
-                        <img src={anh1}></img>
+                        <img src={anh1} alt="ảnh quảng cáo"></img>
                     </Grid>
                     <Grid justifyContent="center" container>
-                        <img src={anh2}></img>
+                        <img src={anh2} alt="ảnh quảng cáo"></img>
                     </Grid>
                 </Carousel>
             </Grid>

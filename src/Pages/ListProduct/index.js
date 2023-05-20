@@ -279,7 +279,7 @@ const FilterBrand = () => {
                                             : `1px solid ${Theme.colors.border}`,
                                 }}
                             >
-                                <img src={brand.img} height="20px" width="100px"></img>
+                                <img src={brand.img} height="20px" width="100px" alt="Hình ảnh thương hiệu"></img>
                             </Button>
                         );
                     })}
@@ -470,7 +470,7 @@ const ListBrand = () => {
                             marginBottom: '5px',
                         }}
                     >
-                        <img src={img} height="20px" width="100px"></img>
+                        <img src={img} height="20px" width="100px" alt="Hình ảnh thương hiệu"></img>
                     </Button>
                 );
             })}

@@ -39,6 +39,11 @@ function Product() {
     }, [change]);
     return (
         <>
+            <Helmet>
+                <title>{`TechHub - ${product.TenSanPham}`} </title>
+                <meta name="description" content={product.TenSanPham} />
+                <meta name="keywords" content={product.TenSanPham} />
+            </Helmet>
             <Grid container justifyContent="center" paddingTop={'8px'}>
                 <Grid container xs={10}>
                     {/* Tên sản phẩm */}
@@ -59,7 +64,11 @@ function Product() {
                                     borderRadius: '15px',
                                 }}
                             >
-                                <img src={product.HinhAnh} style={{ objectFit: 'contain' }}></img>
+                                <img
+                                    src={product.HinhAnh}
+                                    alt={product.TenSanPham}
+                                    style={{ objectFit: 'contain' }}
+                                ></img>
                             </Grid>
                             <Grid container direction="column" paddingTop={'32px'}>
                                 <Card
