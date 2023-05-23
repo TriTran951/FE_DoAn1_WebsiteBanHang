@@ -18,6 +18,8 @@ function Product() {
     let [change, setChange] = useState(1);
     let [productcolor, setProductcolor] = useState();
     let [price, setPrice] = useState();
+    let [img, setImg] = useState();
+
     console.log(id);
     useEffect(() => {
         async function fetchData() {
@@ -30,6 +32,7 @@ function Product() {
                     window.scroll(0, 0);
                     setproducts(res.data);
                     setPrice(res.data.GiaBan);
+                    setImg(res.data.HinhAnh);
                     console.log(res.data);
                 });
             } catch (error) {
@@ -65,11 +68,7 @@ function Product() {
                                     borderRadius: '15px',
                                 }}
                             >
-                                <img
-                                    src={product.HinhAnh}
-                                    alt={product.TenSanPham}
-                                    style={{ objectFit: 'contain' }}
-                                ></img>
+                                <img src={img} alt={product.TenSanPham} style={{ objectFit: 'contain' }}></img>
                             </Grid>
                             <Grid container direction="column" paddingTop={'32px'}>
                                 <Card
@@ -163,7 +162,7 @@ function Product() {
                                                             product._id === item._id
                                                                 ? `2px solid ${Theme.colors.secondary}`
                                                                 : `1px solid ${Theme.colors.borderbasic}`,
-                                                        height: '50px',
+                                                        height: 'auto',
                                                         minWidth: '100%',
                                                         borderRadius: '8px',
 
@@ -185,8 +184,7 @@ function Product() {
                                                                     fontWeight: 'bold',
                                                                 }}
                                                             >
-                                                                12gb
-                                                                {/* {item.TenSanPham} */}
+                                                                {item.TenHienThi}
                                                             </Typography>
                                                         </Grid>
                                                         <Grid>
@@ -230,6 +228,7 @@ function Product() {
                                                         onClick={() => {
                                                             setProductcolor(item._id);
                                                             setPrice(item.GiaBan);
+                                                            if (item.ImgL) setImg(item.ImgL);
                                                         }}
                                                         style={{
                                                             border:
@@ -238,13 +237,13 @@ function Product() {
                                                                     : `1px solid ${Theme.colors.borderbasic}`,
                                                             borderRadius: '8px',
 
-                                                            height: '60px',
+                                                            height: 'auto',
                                                             width: '100%',
                                                         }}
                                                     >
                                                         <Grid container alignItems="center">
                                                             <Grid container xs={4}>
-                                                                <img src={item.HinhAnh}></img>
+                                                                <img src={item.ImgS}></img>
                                                             </Grid>
                                                             <Grid
                                                                 xs={8}

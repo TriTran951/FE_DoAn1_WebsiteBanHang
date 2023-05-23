@@ -176,7 +176,7 @@ function Home() {
     return (
         <>
             <Helmet>
-                <title>TechHub - Mua sắm thiết bị điện tử chất lượng </title>
+                <title>TechHub - Thiết bị điện tử chính hãng</title>
                 <meta
                     name="description"
                     content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị gia dụng thông minh."
