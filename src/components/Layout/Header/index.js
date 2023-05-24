@@ -109,7 +109,7 @@ function Header() {
                                             color: Theme.colors.black,
                                         }}
                                     >
-                                        Tech Hub
+                                        TechHub
                                     </Typography>
                                 </Grid>
                             </Link>
@@ -149,6 +149,7 @@ function Header() {
                             <Link
                                 to={product.link}
                                 style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                                key={product.id}
                             >
                                 <Button
                                     style={{
@@ -156,7 +157,6 @@ function Header() {
                                         background:
                                             Idproduct === product.id ? Theme.colors.button : Theme.colors.primary,
                                     }}
-                                    key={product.id}
                                     onClick={(e) => {
                                         setIdproduct(product.id);
                                     }}

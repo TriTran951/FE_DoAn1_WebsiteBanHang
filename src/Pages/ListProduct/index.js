@@ -261,6 +261,7 @@ const FilterBrand = () => {
                         return (
                             <Button
                                 variant="outlined"
+                                key={brand.id}
                                 onMouseOver={() => {
                                     setbntHoverI(brand.id);
                                 }}
@@ -414,6 +415,7 @@ const PopoverExample = ({ value, name, id }) => {
                 {value.map((value) => {
                     return (
                         <Button
+                            key={value}
                             variant="outlined"
                             onMouseOver={() => {
                                 setbntHoverI(value);

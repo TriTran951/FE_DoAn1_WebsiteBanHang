@@ -42,6 +42,22 @@ function Home() {
         }
         fetchData();
     }, []);
+
+    const ImagePreloader = ({ src }) => {
+        const [imageLoaded, setImageLoaded] = useState(false);
+
+        useEffect(() => {
+            const image = new Image();
+            image.src = src;
+
+            image.onload = () => {
+                setImageLoaded(true);
+            };
+        }, [src]);
+
+        return imageLoaded ? <img src={src} alt="ảnh quảng cáo" /> : null;
+    };
+
     // Từng ô sản phẩm
     const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, _id }) => {
         const [activeProduct, setactiveProduct] = useState(null);
@@ -189,10 +205,10 @@ function Home() {
             <Grid style={{ marginBottom: '50px' }}>
                 <Carousel autoPlay="true" indicators={false}>
                     <Grid justifyContent="center" container>
-                        <img src={anh1} alt="ảnh quảng cáo"></img>
+                        <ImagePreloader src={anh1} />
                     </Grid>
                     <Grid justifyContent="center" container>
-                        <img src={anh2} alt="ảnh quảng cáo"></img>
+                        <ImagePreloader src={anh2} />
                     </Grid>
                 </Carousel>
             </Grid>
