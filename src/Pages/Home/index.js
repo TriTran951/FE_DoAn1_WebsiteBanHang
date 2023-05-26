@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import Slider from 'react-slick';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-
+import LazyLoad from 'react-lazyload';
 import style from './style.scss';
 import Carousel from 'react-material-ui-carousel';
 
@@ -42,7 +42,6 @@ function Home() {
         }
         fetchData();
     }, []);
-
     const ImagePreloader = ({ src }) => {
         const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -55,7 +54,7 @@ function Home() {
             };
         }, [src]);
 
-        return imageLoaded ? <img src={src} alt="ảnh quảng cáo" /> : null;
+        return imageLoaded ? <img src={src} alt="ảnh quảng cáo" width="1920px" height="450px" /> : null;
     };
 
     // Từng ô sản phẩm
@@ -68,57 +67,60 @@ function Home() {
                     style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                 >
                     <Grid>
-                        <Card
-                            key={_id}
-                            onMouseOver={() => {
-                                setactiveProduct(_id);
-                            }}
-                            onMouseOut={() => {
-                                setactiveProduct(null);
-                            }}
-                            style={{
-                                marginLeft: '0.25vw',
-                                marginRight: '0.25vw',
-                                position: 'relative',
-                                height: '430px',
-                                borderRadius: '8px',
-                            }}
-                        >
-                            <CardMedia
-                                component="img"
-                                height="240px"
-                                image={HinhAnh}
-                                loading="lazy"
-                                alt={TenSanPham}
-                                style={{
-                                    transform: activeProduct === _id ? 'translateY(-15px)' : 'none',
-                                    transitionDuration: '0.5s',
-                                    marginTop: '20px',
-                                    padding: '16px',
-                                    objectFit: 'contain',
+                        <LazyLoad height={240} once>
+                            <Card
+                                key={_id}
+                                onMouseOver={() => {
+                                    setactiveProduct(_id);
                                 }}
-                            />
-                            <CardContent>
-                                <Typography
+                                onMouseOut={() => {
+                                    setactiveProduct(null);
+                                }}
+                                style={{
+                                    marginLeft: '0.25vw',
+                                    marginRight: '0.25vw',
+                                    position: 'relative',
+                                    height: '430px',
+                                    borderRadius: '8px',
+                                }}
+                            >
+                                <CardMedia
+                                    component="img"
+                                    height="240px"
+                                    image={HinhAnh}
+                                    loading="lazy"
+                                    alt={TenSanPham}
                                     style={{
-                                        ...CssNameProduct,
-                                        color: activeProduct === _id ? Theme.colors.nameHover : Theme.colors.black,
+                                        transform: activeProduct === _id ? 'translateY(-15px)' : 'none',
+                                        transitionDuration: '0.5s',
+                                        marginTop: '20px',
+                                        padding: '16px',
+                                        objectFit: 'contain',
                                     }}
-                                >
-                                    {TenSanPham}
-                                </Typography>
-                                <Typography style={{ ...CssPrice }}>
-                                    {GiaBan.toLocaleString('vi-VN')}
-                                    <FontAwesomeIcon style={{ marginLeft: '2px' }} icon={faDongSign} />
-                                </Typography>
-                                <Rating value="4" readOnly />
-                            </CardContent>
-                        </Card>
+                                />
+                                <CardContent>
+                                    <Typography
+                                        style={{
+                                            ...CssNameProduct,
+                                            color: activeProduct === _id ? Theme.colors.nameHover : Theme.colors.black,
+                                        }}
+                                    >
+                                        {TenSanPham}
+                                    </Typography>
+                                    <Typography style={{ ...CssPrice }}>
+                                        {GiaBan.toLocaleString('vi-VN')}
+                                        <FontAwesomeIcon style={{ marginLeft: '2px' }} icon={faDongSign} />
+                                    </Typography>
+                                    <Rating value="4" readOnly />
+                                </CardContent>
+                            </Card>
+                        </LazyLoad>
                     </Grid>
                 </Link>
             </>
         );
     };
+
     // List sản phẩm
     function ProductList({ dien_thoai }) {
         let sliderRef = useRef(null);
@@ -147,6 +149,7 @@ function Home() {
                 </Slider>
 
                 <button
+                    aria-label="nút điều hướng sản phẩm"
                     style={{
                         height: '75px',
                         width: '40px ',
@@ -167,6 +170,7 @@ function Home() {
                     <NavigateBeforeIcon style={{ fontSize: '40px' }}></NavigateBeforeIcon>
                 </button>
                 <button
+                    aria-label="nút điều hướng sản phẩm"
                     style={{
                         height: '75px',
                         width: '40px ',
@@ -193,6 +197,8 @@ function Home() {
         <>
             <Helmet>
                 <title>TechHub - Thiết bị điện tử chính hãng</title>
+                <meta http-equiv="Cache-Control" content="max-age=3600, public" />
+                <meta http-equiv="ETag" content="my-unique-etag" />
                 <meta
                     name="description"
                     content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị gia dụng thông minh."
@@ -205,10 +211,14 @@ function Home() {
             <Grid style={{ marginBottom: '50px' }}>
                 <Carousel autoPlay="true" indicators={false}>
                     <Grid justifyContent="center" container>
-                        <ImagePreloader src={anh1} />
+                        <LazyLoad height={450} once>
+                            <ImagePreloader src={anh1} />
+                        </LazyLoad>
                     </Grid>
                     <Grid justifyContent="center" container>
-                        <ImagePreloader src={anh2} />
+                        <LazyLoad height={450} once>
+                            <ImagePreloader src={anh2} />
+                        </LazyLoad>
                     </Grid>
                 </Carousel>
             </Grid>
