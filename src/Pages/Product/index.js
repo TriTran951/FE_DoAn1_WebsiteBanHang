@@ -243,7 +243,12 @@ function Product() {
                                                     >
                                                         <Grid container alignItems="center">
                                                             <Grid container xs={4}>
-                                                                <img src={item.ImgS}></img>
+                                                                <img
+                                                                    width="50px"
+                                                                    height="50px"
+                                                                    src={item.ImgS}
+                                                                    alt={item.TenHienThi}
+                                                                ></img>
                                                             </Grid>
                                                             <Grid
                                                                 xs={8}
