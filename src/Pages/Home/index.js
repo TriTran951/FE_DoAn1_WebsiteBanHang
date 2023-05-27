@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import style from './style.scss';
 import Carousel from 'react-material-ui-carousel';
+import { StaticRouter } from 'react-router-dom';
 
 import anh1 from './img/anhbia1.webp';
 import anh2 from './img/anhbia2.webp';
@@ -194,6 +195,7 @@ function Home() {
             </Grid>
         );
     }
+
     return (
         <>
             <Helmet>
@@ -203,11 +205,11 @@ function Home() {
                 <meta http-equiv="ETag" content="my-unique-etag" />
                 <meta
                     name="description"
-                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị gia dụng thông minh."
+                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị thông minh."
                 />
                 <meta
                     name="keywords"
-                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị gia dụng thông minh."
+                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị thông minh."
                 />
             </Helmet>
             <Grid style={{ marginBottom: '50px' }}>
