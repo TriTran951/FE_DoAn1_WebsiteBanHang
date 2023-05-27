@@ -13,8 +13,8 @@ import LazyLoad from 'react-lazyload';
 import style from './style.scss';
 import Carousel from 'react-material-ui-carousel';
 
-import anh1 from './img/anhbia1.png';
-import anh2 from './img/anhbia2.jpg';
+import anh1 from './img/anhbia1.webp';
+import anh2 from './img/anhbia2.webp';
 
 import {
     Theme,
