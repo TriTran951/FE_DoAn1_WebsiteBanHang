@@ -198,6 +198,7 @@ function Home() {
         <>
             <Helmet>
                 <title>TechHub - Thiết bị điện tử chính hãng.</title>
+                <meta name="google-site-verification" content="wA3-yVl6VC3GKPklCIo25_dxhK5XFoLdHCEWt3jpjxI" />
                 <meta http-equiv="Cache-Control" content="max-age=3600, public" />
                 <meta http-equiv="ETag" content="my-unique-etag" />
                 <meta
