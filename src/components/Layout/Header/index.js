@@ -12,7 +12,6 @@ import LaptopIcon from '@mui/icons-material/Laptop';
 import TabletIcon from '@mui/icons-material/Tablet';
 import WatchOutlinedIcon from '@mui/icons-material/WatchOutlined';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-
 import { Link } from 'react-router-dom';
 function Search() {
     return (
@@ -96,7 +95,11 @@ function Header() {
                 >
                     <Grid container xs={10}>
                         <Grid container item xs={4} justifyContent="center" alignItems="center">
-                            <Link to="/" style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}>
+                            <Link
+                                rel="canonical"
+                                to="/"
+                                style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
+                            >
                                 <Grid container>
                                     {/* <div>
                                         <img src={logo} height={Theme.fontSize.xxl} width={Theme.fontSize.xxl}></img>

@@ -64,6 +64,7 @@ function Home() {
             <>
                 <Link
                     to={{ pathname: `/san-pham/${TenSanPham.replace('/', '')}`, search: `?id=${_id}` }}
+                    rel="canonical"
                     style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                 >
                     <Grid>
@@ -196,7 +197,7 @@ function Home() {
     return (
         <>
             <Helmet>
-                <title>TechHub - Thiết bị điện tử chính hãng</title>
+                <title>TechHub - Thiết bị điện tử chính hãng.</title>
                 <meta http-equiv="Cache-Control" content="max-age=3600, public" />
                 <meta http-equiv="ETag" content="my-unique-etag" />
                 <meta
@@ -263,6 +264,7 @@ function Home() {
                     <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
                         <Link
                             to="/dien-thoai"
+                            rel="canonical"
                             style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                         >
                             <Button style={{ ...CssButtonFullProduct }}>
@@ -312,6 +314,7 @@ function Home() {
                     <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
                         <Link
                             to="/lap-top"
+                            rel="canonical"
                             style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                         >
                             <Button style={{ ...CssButtonFullProduct }}>
@@ -361,6 +364,7 @@ function Home() {
                     <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
                         <Link
                             to="/tab-let"
+                            rel="canonical"
                             style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                         >
                             <Button style={{ ...CssButtonFullProduct }}>
@@ -410,6 +414,7 @@ function Home() {
                     <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
                         <Link
                             to="/dong-ho"
+                            rel="canonical"
                             style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                         >
                             <Button style={{ ...CssButtonFullProduct }}>
@@ -459,6 +464,7 @@ function Home() {
                     <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
                         <Link
                             to="/tai-nghe"
+                            rel="canonical"
                             style={{ backgroundColor: 'unset', color: 'inherit', textDecoration: 'none' }}
                         >
                             <Button style={{ ...CssButtonFullProduct }}>
