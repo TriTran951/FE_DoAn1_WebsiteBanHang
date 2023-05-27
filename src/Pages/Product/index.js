@@ -247,7 +247,7 @@ function Product() {
                                                                     width="50px"
                                                                     height="50px"
                                                                     src={item.ImgS}
-                                                                    alt={item.TenHienThi}
+                                                                    alt={item.TenPhienBan}
                                                                 ></img>
                                                             </Grid>
                                                             <Grid
