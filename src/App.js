@@ -11,7 +11,7 @@ function App() {
                         const Layoutt = route.layout || Layout;
                         const Page = route.component;
                         if (Page === SiteMap) {
-                            return <Route key={index} path={route.path} element={<Page stt={route.stt} />}></Route>;
+                            return <Route key={index} path={route.path} element={<pre>{SiteMap}</pre>}></Route>;
                         }
                         return (
                             <Route
