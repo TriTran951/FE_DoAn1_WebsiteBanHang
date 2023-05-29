@@ -6,7 +6,7 @@ import { faDongSign } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardMedia, CardContent, Typography, Rating, Pagination, Grid, Button, Popover } from '@mui/material';
 import { Theme, CssNameProduct, CssPrice } from '~/components/GlobalStyles/theme.js';
 import { Link } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet';
 library.add(faDongSign);
 
 // Sản phẩm của bạn
@@ -537,12 +537,28 @@ const ProductCard = ({ TenSanPham, GiaBan, HinhAnh, rating, _id }) => {
 function ProductPage({ stt }) {
     const [page, setPage] = useState(1);
     const [products, setproducts] = useState([]);
+    let loaiSP;
     let URL;
-    if (stt === 0) URL = process.env.REACT_APP_hostBE + '/api/client/dienthoai';
-    if (stt === 1) URL = process.env.REACT_APP_hostBE + '/api/client/laptop';
-    if (stt === 2) URL = process.env.REACT_APP_hostBE + '/api/client/tablet';
-    if (stt === 3) URL = process.env.REACT_APP_hostBE + '/api/client/dongho';
-    if (stt === 4) URL = process.env.REACT_APP_hostBE + '/api/client/tainghe';
+    if (stt === 0) {
+        URL = process.env.REACT_APP_hostBE + '/api/client/dienthoai';
+        loaiSP = 'Điện thoại';
+    }
+    if (stt === 1) {
+        URL = process.env.REACT_APP_hostBE + '/api/client/laptop';
+        loaiSP = 'Laptop';
+    }
+    if (stt === 2) {
+        URL = process.env.REACT_APP_hostBE + '/api/client/tablet';
+        loaiSP = 'Tablet';
+    }
+    if (stt === 3) {
+        URL = process.env.REACT_APP_hostBE + '/api/client/dongho';
+        loaiSP = 'Đồng hồ';
+    }
+    if (stt === 4) {
+        URL = process.env.REACT_APP_hostBE + '/api/client/tainghe';
+        loaiSP = 'Tai nghe';
+    }
     // Tổng số sản phẩm và số sản phẩm trên một trang
     useEffect(() => {
         async function fetchData() {
@@ -573,6 +589,20 @@ function ProductPage({ stt }) {
 
     return (
         <>
+            <Helmet>
+                <title>TechHub - {loaiSP}.</title>
+                <meta name="google-site-verification" content="wA3-yVl6VC3GKPklCIo25_dxhK5XFoLdHCEWt3jpjxI" />
+                <meta http-equiv="Cache-Control" content="max-age=3600, public" />
+                <meta http-equiv="ETag" content="my-unique-etag" />
+                <meta
+                    name="description"
+                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị thông minh."
+                />
+                <meta
+                    name="keywords"
+                    content="Cửa hàng trực tuyến chuyên cung cấp các thiết bị điện tử chất lượng, từ điện thoại di động, máy tính bảng, đến các thiết bị thông minh."
+                />
+            </Helmet>
             <Grid container direction="column" alignItems="center">
                 <Grid container xs={10} style={{ marginBottom: '10px' }}>
                     <ListBrand></ListBrand>

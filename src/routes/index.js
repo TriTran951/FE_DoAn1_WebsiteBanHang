@@ -1,7 +1,6 @@
 import Home from '../Pages/Home/index.js';
 import ListProduct from '../Pages/ListProduct/index.js';
 import Product from '../Pages/Product/index.js';
-import SiteMap from '../Pages/SiteMap/index.js';
 
 const publicRoutes = [
     {
@@ -37,10 +36,6 @@ const publicRoutes = [
     {
         path: '/san-pham/:id',
         component: Product,
-    },
-    {
-        path: '/site-map.xml',
-        component: SiteMap,
     },
 ];
 
